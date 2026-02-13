@@ -16,7 +16,7 @@ services:
         value: "False"
 
   # Frontend static site
-  - type: static
+  - type: static_site
     name: mls-frontend
     env: static
     buildCommand: npm install && npm run build

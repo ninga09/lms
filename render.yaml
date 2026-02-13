@@ -3,6 +3,7 @@ services:
   - type: web
     name: mls-backend
     env: python
+    rootDir: backend
     buildCommand: ./build.sh
     startCommand: gunicorn mls_backend.wsgi:application
     envVars:
@@ -16,11 +17,12 @@ services:
         value: "False"
 
   # Frontend static site
-  - type: static_site
+  - type: web
     name: mls-frontend
     env: static
+    rootDir: frontend
     buildCommand: npm install && npm run build
-    publishPath: frontend/dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         fromService:
